@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './zodiac_wheel_modified.svg';
 import './App.css';
+import Wheel from './Wheel'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      currentPosition: 0
+    }
+  }
+  componentDidMount(){
+    setInterval(this.rotate, 2500);
+  }
+
+  rotate = () => {
+    this.setState(state => {
+      return {currentPosition: state.currentPosition += 360/365}
+    });
+  }
+
+  render(){
+    const {currentPosition} = this.state
+    return (
+      <main className="App">
+        <Wheel currentPosition={currentPosition} />
+      </main>
+    );
+  }
 }
 
 export default App;
+
