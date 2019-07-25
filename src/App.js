@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './zodiac_wheel_modified.svg';
+
 import './App.css';
 import Wheel from './Wheel'
 
@@ -26,6 +26,7 @@ class App extends React.Component {
     return (
       <main className="App">
         <Wheel currentPosition={currentPosition} />
+        <WheelDisplay/>
       </main>
     );
   }
