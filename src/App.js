@@ -1,32 +1,42 @@
 import React from 'react';
 
 import './App.css';
-import Wheel from './Wheel'
+import Wheel from './Wheel';
+import WheelDisplay from './WheelDisplay';
+import { dayOfYear } from './lib/sign-calc';
 
+const todayDegrees = dayOfYear * 360 / 365;
 
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      currentPosition: 0
+      currentPosition: -15,
     }
   }
-  componentDidMount(){
-    setInterval(this.rotate, 2500);
+
+  componentDidMount() {
+    setTimeout(() => this.rotate(todayDegrees), 500);
   }
 
-  rotate = () => {
-    this.setState(state => {
-      return {currentPosition: state.currentPosition += 360/365}
+  rotate = (deg = this.state.currentPosition) => {
+    this.setState({
+      currentPosition: deg - 15,
     });
   }
 
-  render(){
-    const {currentPosition} = this.state
+  handleClick = () => {
+    this.rotate(this.state.currentPosition + 40 * 7);
+  }
+
+  render() {
+    const { currentPosition } = this.state
     return (
       <main className="App">
+        <h1>V</h1>
         <Wheel currentPosition={currentPosition} />
-        <WheelDisplay/>
+        <WheelDisplay day={currentPosition} />
+        <button onClick={this.handleClick}>Click me</button>
       </main>
     );
   }
