@@ -1,10 +1,10 @@
 import React from 'react';
 
-function WheelDisplay(){
+function WheelDisplay({ day }) {
 
-  return(
+  return (
     <div className="display">
-
+      {day}
     </div>
   )
 }
