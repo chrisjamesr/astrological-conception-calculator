@@ -25,8 +25,12 @@ class App extends React.Component {
     });
   }
 
-  handleClick = () => {
+  handleClickForward = () => {
     this.rotate(this.state.currentPosition + 40 * 7);
+  }
+
+  handleClickToday = () => {
+    this.rotate(todayDegrees);
   }
 
   render() {
@@ -35,8 +39,11 @@ class App extends React.Component {
       <main className="App">
         <h1>V</h1>
         <Wheel currentPosition={currentPosition} />
-        <WheelDisplay day={currentPosition} />
-        <button onClick={this.handleClick}>Click me</button>
+        <WheelDisplay day={currentPosition}
+          jumpForward={this.handleClickForward}
+          jumpToday={this.handleClickToday}
+        />
+
       </main>
     );
   }
